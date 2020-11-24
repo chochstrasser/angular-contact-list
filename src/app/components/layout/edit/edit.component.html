@@ -1,4 +1,22 @@
-<p>edit works!</p>
-<form></form>
-<button type="button" (click)="onSave()">Delete</button>
-<button type="button" (click)="onDelete()">Save</button>
+<form [formGroup]="contactForm">
+  <label>
+    Name:
+    <input type="text" formControlName="name" />
+  </label>
+  <label>
+    Address:
+    <input type="text" formControlName="address" />
+  </label>
+  <label>
+    Email:
+    <input type="text" formControlName="email" />
+  </label>
+  <label>
+    Phone:
+    <input type="number" formControlName="phone" />
+  </label>
+
+  <button type="button" (click)="onCancel()">Cancel</button>
+  <button type="button" (click)="onDelete()">Delete</button>
+  <button type="button" (click)="onSave()">Save</button>
+</form>

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TableComponent } from './components/table/table.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -9,8 +10,15 @@ import { EditComponent } from './components/layout/edit/edit.component';
 import { AddComponent } from './components/layout/add/add.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, ButtonComponent, MainComponent, EditComponent, AddComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    ButtonComponent,
+    MainComponent,
+    EditComponent,
+    AddComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

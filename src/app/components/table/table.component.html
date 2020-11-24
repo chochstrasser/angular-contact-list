@@ -1,6 +1,25 @@
 <table>
   <tr>
-    <th *ngFor="let header of headers">{{ header }}</th>
+    <th
+      *ngFor="let header of headers; first as firstHeader"
+      (click)="onSort(header)"
+    >
+      {{ header }}
+      <ng-condition *ngIf="firstHeader">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          [class]="order"
+        >
+          <path
+            [attr.fill]="fillColor"
+            d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"
+          />
+        </svg>
+      </ng-condition>
+    </th>
   </tr>
   <tr *ngFor="let contact of contacts">
     <td *ngFor="let header of headers" (click)="onSelected(contact)">
