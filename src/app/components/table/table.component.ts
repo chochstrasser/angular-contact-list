@@ -22,8 +22,9 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.headers = ['Name', 'Address', 'Email', 'Phone'];
     this.contactsService.currentContacts.subscribe(
-      (contact) => (this.contacts = contact)
+      (contacts) => (this.contacts = contacts)
     );
+    this.onSort('Name');
     this.order = 'desc';
     this.fillColor = 'rgb(255,255,255)';
   }
