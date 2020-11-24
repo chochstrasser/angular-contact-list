@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": true,
-            "styles": [],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         },

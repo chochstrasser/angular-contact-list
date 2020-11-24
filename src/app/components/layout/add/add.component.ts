@@ -23,6 +23,10 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onCancel() {
+    this.router.navigate([''], { skipLocationChange: true });
+  }
+
   onSave() {
     this.contactsService.add(this.contactForm.value);
     this.router.navigate([''], { skipLocationChange: true });
