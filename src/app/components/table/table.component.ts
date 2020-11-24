@@ -11,6 +11,8 @@ import { ContactsService } from '../../services/contacts.service';
 export class TableComponent implements OnInit {
   headers: String[];
   contacts: Contact[];
+  order: string;
+  fillColor: string;
 
   constructor(
     private router: Router,
@@ -22,10 +24,39 @@ export class TableComponent implements OnInit {
     this.contactsService.currentContacts.subscribe(
       (contact) => (this.contacts = contact)
     );
+    this.order = 'desc';
+    this.fillColor = 'rgb(255,255,255)';
+  }
+
+  onSort(item) {
+    if (item === 'Name') {
+      this.contacts.sort(compareValues(item.toLowerCase(), this.order));
+      this.order = this.order === 'desc' ? 'asc' : 'desc';
+    }
   }
 
   onSelected(item) {
-    console.log(item);
+    this.contactsService.updateContact(item);
     this.router.navigate(['/edit'], { skipLocationChange: true });
   }
 }
+
+const compareValues = (key, order = 'asc') => {
+  const innerSort = (a, b) => {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
+
+    const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return order === 'desc' ? comparison * -1 : comparison;
+  };
+  return innerSort;
+};

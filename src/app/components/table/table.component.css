@@ -15,8 +15,18 @@ tr:nth-child(even) {
   background-color: #f2f2ff;
 }
 
-tr:hover {
+tr:not(:first-child):hover {
   background-color: #dddddd;
+  cursor: pointer;
+}
+
+tr:first-child > th:first-child {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+
+th:first-child:hover {
   cursor: pointer;
 }
 
@@ -25,4 +35,12 @@ th {
   text-align: left;
   background-color: cadetblue;
   color: white;
+}
+
+.desc {
+  transform: rotate(0deg);
+}
+
+.asc {
+  transform: rotate(180deg);
 }

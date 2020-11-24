@@ -9,20 +9,49 @@ export class ContactsService {
   private contactsSource = new BehaviorSubject<Contact[]>(this.getContacts());
   currentContacts = this.contactsSource.asObservable();
 
+  private currentContactSource = new BehaviorSubject<Contact>({
+    id: null,
+    name: '',
+    address: '',
+    email: '',
+    phone: null,
+  });
+  currentContact = this.currentContactSource.asObservable();
+
   constructor() {}
 
   add(data) {
     const currentValue = this.contactsSource.value;
-    const updatedValue = [...currentValue, data];
+    const id =
+      Math.max.apply(
+        Math,
+        currentValue.map((contact) => {
+          return contact.id;
+        })
+      ) + 1;
+    const updatedValue = [...currentValue, { ...data, id }];
     this.contactsSource.next(updatedValue);
   }
 
   edit(data) {
-    console.log(data);
+    const currentValue = this.contactsSource.value;
+    const updateValue = currentValue.map((contact) => {
+      if (contact.id === data.id) return data;
+      return contact;
+    });
+    this.contactsSource.next(updateValue);
   }
 
   delete(data) {
-    console.log(data);
+    const currentValue = this.contactsSource.value;
+    const updateValue = currentValue.filter(
+      (contact) => contact.id !== data.id
+    );
+    this.contactsSource.next(updateValue);
+  }
+
+  updateContact(data) {
+    this.currentContactSource.next(data);
   }
 
   getContacts() {
