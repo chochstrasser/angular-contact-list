@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+form {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 20rem;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  outline: none;
+}
+
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px;
+  border: none;
+  background-color: cadetblue;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+button + button {
+  margin-left: 0.5rem;
+}
+
+button.danger {
+  background-color: #b40909;
+}
+
+button.secondary {
+  background-color: #5e5e5e;
+}
